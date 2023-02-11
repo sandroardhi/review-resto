@@ -22,7 +22,7 @@
         // kalo ada data langsung di store di localStorage
         // iki kyke parameter pertama e setItem iku key ne, parameter kedua iku value ne
         localStorage.setItem('access_token', data.access_token);
-        localStorage.setItem('user', data.user);
+        localStorage.setItem('user', JSON.stringify(data.user));
 
         router.replace({name: 'about'})
       } 
