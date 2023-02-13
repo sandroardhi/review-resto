@@ -22,7 +22,7 @@
         let textCopy = text;
 
         if (textCopy.length > maxLength) {
-            textCopy = textCopy.subString(0, maxLength) + indicator;
+            textCopy = textCopy.substring(0, maxLength) + indicator;
         }
         return textCopy;
     }
