@@ -1,7 +1,43 @@
 <script setup>
+    import { useRestoRepository } from '../composables/useRestoRepository';
+    import { ref, onMounted } from 'vue';
 
+    const repository = useRestoRepository();
+
+    const isLoading = ref(true);
+    const restos = ref([]);
+    const fetchRestos = async () => {
+        isLoading.value = true;
+        try {
+            const { data } = await repository.index();
+            restos.value = data; 
+        } catch(e) {
+            console.error(e);
+        }
+        isLoading.value = false;
+    };
+    onMounted(() => fetchRestos());
+
+    const excerpt = (text, maxLength = 10, indicator = "...") => {
+        let textCopy = text;
+
+        if (textCopy.length > maxLength) {
+            textCopy = textCopy.subString(0, maxLength) + indicator;
+        }
+        return textCopy;
+    }
 </script>
 
 <template>
-    <div>Hello From Resto</div>
+    <div class="min-screen container mx-auto">
+        <div class="grid grid-cols-12 gap-4 py-4">
+            <div v-for="resto in restos" :key="resto.id" class="col-span-4">
+                <!-- Card -->
+                <a href="#" class="block bg-white shadow p-4 rounded select-none">
+                    <h1 class="text-lg font-bold capitalize">{{ resto.name }}</h1>
+                    <p class="text-gray-500">{{ excerpt(resto.description, 40) }}</p>
+                </a>
+            </div>
+        </div>
+    </div>
 </template>
