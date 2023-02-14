@@ -1,6 +1,7 @@
 <script setup>
     import { useRestoRepository } from '../composables/useRestoRepository';
     import { ref, onMounted } from 'vue';
+    import { RouterLink } from 'vue-router';
 
     const repository = useRestoRepository();
 
@@ -33,10 +34,10 @@
         <div class="grid grid-cols-12 gap-4 py-4">
             <div v-for="resto in restos" :key="resto.id" class="col-span-4">
                 <!-- Card -->
-                <a href="#" class="block bg-white shadow p-4 rounded select-none">
+                <RouterLink :to="{ name:'restos-show', params: { id:resto.id } }" class="block bg-white shadow p-4 rounded select-none">
                     <h1 class="text-lg font-bold capitalize">{{ resto.name }}</h1>
                     <p class="text-gray-500">{{ excerpt(resto.description, 40) }}</p>
-                </a>
+                </RouterLink>
             </div>
         </div>
     </div>
