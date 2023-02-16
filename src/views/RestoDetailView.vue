@@ -1,7 +1,7 @@
 <script setup>
     import { useRestoRepository } from '../composables/useRestoRepository';
     import { ref, onMounted } from 'vue';
-    import { useRoute } from 'vue-router';
+    import { useRoute, RouterLink } from 'vue-router';
     import BaseCard from "@/components/BaseCard.vue";
     import BaseContainer from '../components/BaseContainer.vue';
 
@@ -29,8 +29,19 @@
 
 <template>
    <BaseContainer>
-        <BaseCard>
-            Sedang Menampilkan resto dengan ID: {{ route.params.id }}
+        <RouterLink
+            :to="{ name: 'restos' }"
+            class="inline-block p-2 px-4 bg-blue-600 text-white rounded hover:bg-blue-800"
+        >
+            Back
+        </RouterLink>
+        <BaseCard class="mt-4">
+            <template #title>
+                {{ detail.name }}
+            </template>
+        </BaseCard>
+        <BaseCard class="mt-4">
+            {{ detail.description }}
         </BaseCard>
    </BaseContainer>
 </template>
