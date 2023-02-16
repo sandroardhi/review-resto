@@ -2,6 +2,7 @@
     import { useRestoRepository } from '../composables/useRestoRepository';
     import { ref, onMounted } from 'vue';
     import BaseCard from '../components/BaseCard.vue';
+    import BaseContainer from '../components/BaseContainer.vue';
 
     const repository = useRestoRepository();
 
@@ -30,8 +31,8 @@
 </script>
 
 <template>
-    <div class="min-screen container mx-auto">
-        <div class="grid grid-cols-12 gap-4 py-4">
+    <BaseContainer>
+        <div class="grid grid-cols-12 gap-4">
             <div v-for="resto in restos" :key="resto.id" class="col-span-4">
                 <!-- Card -->
                 <BaseCard :to="{ name:'restos-show', params: { id:resto.id } }" >
@@ -42,5 +43,5 @@
                 </BaseCard>
             </div>
         </div>
-    </div>
+    </BaseContainer>
 </template>
