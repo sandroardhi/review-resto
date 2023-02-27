@@ -16,11 +16,10 @@
   })
 
   const isLoggingIn = ref(false)
-  const onSubmit = async () => {
+  const onSubmit = () => {
     isLoggingIn.value = true;
     try {
-      const {data} = await repository.register(credentials);
-      localStorage.setItem('credentials', JSON.stringify(data.credentials))
+      repository.register(credentials);
 
       router.replace({name: 'login'})
     } 
