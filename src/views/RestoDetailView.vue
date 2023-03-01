@@ -58,7 +58,12 @@
             </template>
         </BaseCard>
         <BaseCard class="mt-4">
-            {{ resto.description }}
+            <div v-if="resto.description">
+                {{ resto.description }}
+            </div>
+            <div v-else>
+                'No Description Yet'
+            </div>
         </BaseCard>
         <BaseCard class="mt-4 bg-red-600 text-white">
         <template #title>Reviews</template>
