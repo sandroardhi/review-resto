@@ -24,6 +24,11 @@ const router = createRouter({
       name: "restos-show",
       component: () => import("../views/RestoDetailView.vue")      
     },
+    {
+      path: "/create",
+      name: "create",
+      component: () => import("../views/CreateView.vue")      
+    },
   ]
 })
 
