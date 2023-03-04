@@ -53,6 +53,7 @@
               type="password" 
               class="border p-2 w-full bg-gray-50 rounded outline-none focus:ring-2 focus:ring-blue-300 transition-all"
               v-model="credentials.password" 
+              placeholder="password"
               required>
             </div>
             <button type="submit" class="border p-3 text-white active:bg-blue-600 hover:bg-blue-500 w-full rounded bg-blue-400 transition-colors">Masuk</button>

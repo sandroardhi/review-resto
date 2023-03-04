@@ -4,7 +4,7 @@ import axios from "axios";
 
 export const useHttp = () => {
   const client = axios.create({
-    baseURL: import.meta.env.VUE_APP_API_URL || "http://localhost:8000",
+    baseURL: import.meta.env.VUE_APP_API_URL || "http://127.0.0.1:8000",
     headers: {
       "Content-Type": "application/json",
       "X-Requested-With": "XMLHttpRequest",

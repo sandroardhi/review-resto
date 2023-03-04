@@ -1,6 +1,7 @@
 <script setup>
     import { useRestoRepository } from '../composables/useRestoRepository';
-    import { ref, onMounted } from 'vue';
+    import { useReviewRepository } from '../composables/useReviewRepository'
+    import { ref, onMounted, reactive } from 'vue';
     import { useRoute, RouterLink } from 'vue-router';
     import BaseCard from "@/components/BaseCard.vue";
     import BaseContainer from '../components/BaseContainer.vue';
@@ -39,6 +40,22 @@
     }
     onMounted(() => fetchReviews());
 
+    const review_data = reactive({
+        rating: '',
+        text: ''
+    })
+    const review_repository = useReviewRepository();
+    const onSubmit = () => {
+        isLoading.value = true
+        try {
+            review_repository.store(review_data);
+        } catch (e) {
+            console.error(e)
+        }
+
+        isLoading.value = false
+    }
+
 </script>
 
 <template>
@@ -62,11 +79,38 @@
                 {{ resto.description }}
             </div>
             <div v-else>
-                'No Description Yet'
+                No Description Yet
             </div>
         </BaseCard>
         <BaseCard class="mt-4 bg-red-600 text-white">
         <template #title>Reviews</template>
+        </BaseCard>
+
+        <BaseCard>
+            <div class="my-[3%]">
+            <form :action="route.path" class="flex flex-col w-[40%]" @submit.prevent="onSubmit">
+                <label for="name" class="mt-2 mb-3 text-black font-semibold">Rating: </label>
+                <input 
+                    type="number" 
+                    name="rating" 
+                    class="border-2 text-black border-[rgb(138,138,138)] p-1 focus:border-black rounded-sm transition-all duration-300 outline-none mb-2"
+                    v-model="review_data.rating"
+                    placeholder="1 to 5"
+                    min="1"
+                    max="5"
+                    required
+                >
+                <label class="mb-3 font-semibold text-black" for="description">Review: </label>
+                <textarea 
+                    type="text" 
+                    rows="4" 
+                    name="text" 
+                    class="border-2 border-[rgb(138,138,138)] text-black p-1 focus:border-black rounded-sm transition-all duration-300 outline-none mb-2"
+                    v-model="review_data.text"
+                />
+                <input type="submit" class="mt-2 text-black border-2 border-black p-1 cursor-pointer font-semibold hover:bg-black hover:text-white transition-all duration-300">
+            </form>
+        </div>
         </BaseCard>
 
         <BaseCard v-for="review in reviews" :key="review.id" class="mt-4">
