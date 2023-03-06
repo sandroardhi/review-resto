@@ -31,7 +31,12 @@
 </script>
 
 <template>
-  <main class="grid grid-cols-12 gap-4">
+    <div v-if="isLoggingIn" class="w-screen h-screen bg-gray-100 flex items-center justify-center flex-col ">
+        <img src="../../public/assets/loading-cat-unscreen.gif" alt="">
+        <p class=" text-4xl text-[#393d47] font-['Fredoka_One']">Please Wait Congok . . .</p>
+    </div>
+
+  <main class="grid grid-cols-12 gap-4" v-else>
     <section class="col-span-6 bg-white min-h-screen shadow-lg">
         <form :action="route.path" method="post" class="p-40" @submit.prevent="onSubmit">
             <div class="mb-4">

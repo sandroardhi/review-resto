@@ -69,10 +69,6 @@
                     <div v-else>
                         {{ excerpt('No Description Yet', 40) }}
                     </div>
-                    <div v-if="resto.address">
-                        {{ excerpt(resto.address, 40) }}
-                    </div>
-                   
                 </BaseCard>
             </div>
         </div>
