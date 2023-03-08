@@ -36,9 +36,9 @@
         <p class=" text-4xl text-[#393d47] font-['Fredoka_One']">Please Wait Congok . . .</p>
     </div>
 
-  <main class="grid grid-cols-12 gap-4" v-else>
-    <section class="col-span-6 bg-white min-h-screen shadow-lg">
-        <form :action="route.path" method="post" class="p-40" @submit.prevent="onSubmit">
+  <main class="grid grid-cols-12 gap-4 overflow-hidden" v-else>
+    <section class="col-span-6 bg-white h-screen shadow-lg">
+        <form :action="route.path" method="post" class="w-[50%] mx-auto mt-20" @submit.prevent="onSubmit">
             <div class="mb-4">
               <label for="name" class="block mb-2">Name</label>
               <input 
@@ -63,6 +63,7 @@
               type="password" 
               class="border p-2 w-full bg-gray-50 rounded outline-none focus:ring-2 focus:ring-blue-300 transition-all"
               v-model="credentials.password" 
+              placeholder="*******"
               required>
             </div>
             <div class="mb-4">
@@ -71,10 +72,12 @@
               type="password" 
               class="border p-2 w-full bg-gray-50 rounded outline-none focus:ring-2 focus:ring-blue-300 transition-all"
               v-model="credentials.password_confirmation" 
+              placeholder="*******"
               required>
             </div>
             <button type="submit" class="border p-3 text-white active:bg-blue-600 hover:bg-blue-500 w-full rounded bg-blue-400 transition-colors">Masuk</button>
-        </form>
+            <p class="text-center mt-5 font-semibold">Already Have an Account ? <router-link class="text-blue-600 hover:text-blue-700 hover:text-xl duration-300" to="/" >Login</router-link></p>
+          </form>
     </section>
   </main>
 </template>
