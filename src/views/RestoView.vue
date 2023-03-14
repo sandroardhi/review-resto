@@ -36,6 +36,8 @@
     }
         
     const logout = () => {
+        localStorage.removeItem('user');
+        localStorage.removeItem('access_token');
         repository_auth.logout();
         router.replace({name: 'login'})
     }
@@ -68,35 +70,39 @@
             <div class="flex justify-around items-center">
                 <a href="" class="ml-2 px-4">Home</a>
                 <router-link to="about" class="ml-2 px-4">About</router-link>
-                <button v-if="dropdown" @click="dropdownHide" class="dropdown-toggle bg-blue-400 px-2 py-1 text-white font-semibold rounded-md">
-                    Hi, {{ userData.name }}
-                    <ul v-if="dropdown" class="dropdown-group absolute mt-2 right-5 rounded-sm w-[15%] bg-white text-black border">
-                        <li class="p-1 border border-black">
-                            tes
-                        </li>
-                        <li @click="logout" class="p-1  border-x border-black font-semibold">
-                            Logout
-                        </li>
-                        <li class="p-1 border border-black">
-                            <router-link to="create-resto" >Create Your Resto</router-link>
-                        </li>
-                    </ul>
-                </button>
-                <button v-else @click="dropdownShow" class="dropdown-toggle bg-blue-400 px-2 py-1 text-white font-semibold rounded-md">
-                    Hi, {{ userData.name }}
-                    <ul v-if="dropdown" class="dropdown-group absolute mt-2 right-5 rounded-sm w-[15%] bg-white text-black border">
-                        <li class="p-1 border border-black">
-                            tes
-                        </li>
-                        <li @click="logout" class="p-1  border-x border-black font-semibold">
-                            Logout
-                        </li>
-                        <li class="p-1 border border-black">
-                            <router-link to="create-resto" >Create Your Resto</router-link>
-                        </li>
-                    </ul>
-                </button>
-                
+                <div v-if="userData">
+                    <button v-if="dropdown" @click="dropdownHide" class="dropdown-toggle bg-blue-400 px-2 py-1 text-white font-semibold rounded-md">
+                        Hi, {{ userData.name }}
+                        <ul v-if="dropdown" class="dropdown-group absolute mt-2 right-5 rounded-sm w-[15%] bg-white text-black border">
+                            <li class="p-1 border border-black">
+                                tes
+                            </li>
+                            <li @click="logout" class="p-1  border-x border-black font-semibold">
+                                Logout
+                            </li>
+                            <li class="p-1 border border-black">
+                                <router-link to="create-resto" >Create Your Resto</router-link>
+                            </li>
+                        </ul>
+                    </button>
+                    <button v-else @click="dropdownShow" class="dropdown-toggle bg-blue-400 px-2 py-1 text-white font-semibold rounded-md">
+                        Hi, {{ userData.name }}
+                        <ul v-if="dropdown" class="dropdown-group absolute mt-2 right-5 rounded-sm w-[15%] bg-white text-black border">
+                            <li class="p-1 border border-black">
+                                tes
+                            </li>
+                            <li @click="logout" class="p-1  border-x border-black font-semibold">
+                                Logout
+                            </li>
+                            <li class="p-1 border border-black">
+                                <router-link to="create-resto" >Create Your Resto</router-link>
+                            </li>
+                        </ul>
+                    </button>
+                </div>
+                <div v-else>
+                    <router-link to="/" >Login</router-link>
+                </div>
             </div>
         </div>
         <div class="grid grid-cols-12 gap-4">
