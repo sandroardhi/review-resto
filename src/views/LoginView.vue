@@ -2,6 +2,7 @@
   import { useRoute, useRouter } from 'vue-router';
   import { reactive, ref } from 'vue';
   import { useAuthRepository } from '@/composables';
+  import Loading from '../components/Loading.vue';
   import axios from "axios";
 
 
@@ -42,10 +43,7 @@
 </script>
 
 <template>
-    <div v-if="isLoggingIn" class="w-screen h-screen bg-gray-100 flex items-center justify-center flex-col ">
-        <img src="../../public/assets/loading-cat-unscreen.gif" alt="">
-        <p class=" text-4xl text-[#393d47] font-['Fredoka_One']">Please Wait Congok . . .</p>
-    </div>
+  <Loading v-if="isLoggingIn"/>
   <main class="grid grid-cols-12 gap-4" v-else>
     <section class="col-span-6 bg-white min-h-screen shadow-lg">
         <form :action="route.path" method="post" class="mt-36 p-4 lg:mt-0 lg:p-40" @submit.prevent="onSubmit">

@@ -1,6 +1,7 @@
 <script setup>
   import { useRoute, useRouter } from 'vue-router';
   import { reactive, ref } from 'vue';
+  import Loading from '../components/Loading.vue';
   import { useAuthRepository } from '@/composables';
 
   const route = useRoute();
@@ -15,9 +16,9 @@
     device_name: 'browser'
   })
 
-  const isLoggingIn = ref(false)
+  const isLoading = ref(false)
   const onSubmit = () => {
-    isLoggingIn.value = true;
+    isLoading.value = true;
     try {
       repository.register(credentials);
 
@@ -26,16 +27,12 @@
     catch (e) {
         console.error(e)
     }
-    isLoggingIn.value = false;
+    isLoading.value = false;
   }
 </script>
 
 <template>
-    <div v-if="isLoggingIn" class="w-screen h-screen bg-gray-100 flex items-center justify-center flex-col ">
-        <img src="../../public/assets/loading-cat-unscreen.gif" alt="">
-        <p class=" text-4xl text-[#393d47] font-['Fredoka_One']">Please Wait Congok . . .</p>
-    </div>
-
+  <Loading v-if="isLoading"/>
   <main class="grid grid-cols-12 gap-4 overflow-hidden" v-else>
     <section class="col-span-6 bg-white h-screen shadow-lg">
         <form :action="route.path" method="post" class="w-[50%] mx-auto mt-20" @submit.prevent="onSubmit">

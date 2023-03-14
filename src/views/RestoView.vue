@@ -6,6 +6,7 @@
     import BaseCard from '../components/BaseCard.vue';
     import BaseContainer from '../components/BaseContainer.vue';
     import Navbar from '../components/Navbar.vue';
+    import Loading from '../components/Loading.vue';
 
     const repository = useRestoRepository();
     const repository_auth = useAuthRepository();
@@ -51,10 +52,7 @@
 </script>
 
 <template>
-    <div v-if="isLoading" class="w-screen h-screen bg-gray-100 flex items-center justify-center flex-col ">
-        <img src="../../public/assets/loading-cat-unscreen.gif" alt="">
-        <p class=" text-4xl text-[#393d47] font-['Fredoka_One']">Please Wait . . .</p>
-    </div>
+    <loading v-if="isLoading"/>
     <BaseContainer v-else>
         <Navbar/>
         <div class="grid grid-cols-12 gap-4">

@@ -1,4 +1,11 @@
+<script setup>
+    import Loading from '../components/Loading.vue';
+
+
+</script>
+
 <template>
+  <Loading/>
   <div class="about">
     <h1>This is an about page</h1>
   </div>

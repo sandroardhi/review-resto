@@ -3,6 +3,7 @@ import BaseContainer from '../components/BaseContainer.vue';
 import { useRoute, useRouter } from 'vue-router';
 import { reactive, ref } from 'vue';
 import { useRestoRepository } from '../composables/useRestoRepository';
+import Loading from '../components/Loading.vue';
 
 const router = useRouter();
 const route = useRoute();
@@ -28,10 +29,7 @@ const onSubmit = () => {
 </script>
 
 <template>
-    <div v-if="isLoading" class="w-screen h-screen bg-gray-100 flex items-center justify-center flex-col ">
-        <img src="../../public/assets/loading-cat-unscreen.gif" alt="">
-        <p class=" text-4xl text-[#393d47] font-['Fredoka_One']">Please Wait Congok . . .</p>
-    </div>
+    <Loading v-if="isLoading"/>
     <BaseContainer v-else>
         <div class="w-[75%] h-[80vh] bg-white mx-auto my-[3%] flex justify-center">
             <form :action="route.path" class="flex flex-col w-[40%]" @submit.prevent="onSubmit">

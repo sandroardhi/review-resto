@@ -22,7 +22,7 @@
                 <h1 class="text-3xl font-semibold">Resto</h1>
             </div>
             <div class="flex justify-around items-center">
-                <a href="" class="ml-2 px-4">Home</a>
+                <router-link to="restos" class="ml-2 px-4">Home</router-link>
                 <router-link to="about" class="ml-2 px-4">About</router-link>
                 <div v-if="userData">
                     <button v-if="dropdown" @click="dropdownHide" class="dropdown-toggle bg-blue-400 px-2 py-1 text-white font-semibold rounded-md">

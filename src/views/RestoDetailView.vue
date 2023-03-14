@@ -4,6 +4,7 @@
     import { ref, onMounted, reactive } from 'vue';
     import { useRoute,useRouter, RouterLink } from 'vue-router';
     import BaseCard from "@/components/BaseCard.vue";
+    import Loading from '../components/Loading.vue';
     import BaseContainer from '../components/BaseContainer.vue';
 
     const repository = useRestoRepository();
@@ -67,10 +68,7 @@
 </script>
 
 <template>
-    <div v-if="isLoading" class="w-screen h-screen bg-gray-100 flex items-center justify-center flex-col ">
-        <img src="../../public/assets/loading-cat-unscreen.gif" alt="">
-        <p class=" text-4xl text-[#393d47] font-['Fredoka_One']">Please Wait . . .</p>
-    </div>
+    <Loading v-if="isLoading"/>
    <BaseContainer v-else>
         <RouterLink
             :to="{ name: 'restos' }"
