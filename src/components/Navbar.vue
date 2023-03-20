@@ -1,9 +1,20 @@
 <script setup>
     import { ref } from 'vue';
     import { RouterLink, useRouter } from 'vue-router';
+    import { useAuthRepository } from '../composables/useAuthRepository';
 
     const userData = JSON.parse(localStorage.getItem('user'));
     const dropdown = ref(false)
+
+    const repository_auth = useAuthRepository();
+    const router = useRouter()
+
+    const logout = () => {
+        localStorage.removeItem('user');
+        localStorage.removeItem('access_token');
+        repository_auth.logout();
+        router.replace({name: 'login'})
+    }
 
     const dropdownShow = () => {
         dropdown.value = true
@@ -22,8 +33,8 @@
                 <h1 class="text-3xl font-semibold">Resto</h1>
             </div>
             <div class="flex justify-around items-center">
-                <router-link to="restos" class="ml-2 px-4">Home</router-link>
-                <router-link to="about" class="ml-2 px-4">About</router-link>
+                <router-link to="/restos" class="ml-2 px-4">Home</router-link>
+                <router-link to="about" class="ml-2 px-4 mr-4">About</router-link>
                 <div v-if="userData">
                     <button v-if="dropdown" @click="dropdownHide" class="dropdown-toggle bg-blue-400 px-2 py-1 text-white font-semibold rounded-md">
                         Hi, {{ userData.name }}

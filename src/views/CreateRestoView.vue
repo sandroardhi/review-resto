@@ -4,6 +4,7 @@ import { useRoute, useRouter } from 'vue-router';
 import { reactive, ref } from 'vue';
 import { useRestoRepository } from '../composables/useRestoRepository';
 import Loading from '../components/Loading.vue';
+import Navbar from '../components/Navbar.vue';
 
 const router = useRouter();
 const route = useRoute();
@@ -31,6 +32,7 @@ const onSubmit = () => {
 <template>
     <Loading v-if="isLoading"/>
     <BaseContainer v-else>
+        <Navbar/>
         <div class="w-[75%] h-[80vh] bg-white mx-auto my-[3%] flex justify-center">
             <form :action="route.path" class="flex flex-col w-[40%]" @submit.prevent="onSubmit">
                 <label for="name" class="mt-16 mb-3 font-semibold">Resto Name: </label>

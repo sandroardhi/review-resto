@@ -36,12 +36,7 @@
         return textCopy
     }
         
-    const logout = () => {
-        localStorage.removeItem('user');
-        localStorage.removeItem('access_token');
-        repository_auth.logout();
-        router.replace({name: 'login'})
-    }
+
 
 
 
