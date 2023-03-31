@@ -10,6 +10,8 @@ export const useRestoRepository = () => {
      */
     const index = () => http.get("/api/restos");
 
+    const index_resto_profile = (id) => http.get(`/api/restos/profile/${id}`)
+
     /**
      * show specific resto from the database.
      * 
@@ -52,6 +54,7 @@ export const useRestoRepository = () => {
 
     return {
         index,
+        index_resto_profile,
         show,
         store,
         update,

@@ -25,6 +25,11 @@ const router = createRouter({
       component: () => import("../views/RestoDetailView.vue")      
     },
     {
+      path: "/edit/:id",
+      name: "edit",
+      component: () => import("../views/EditView.vue")      
+    },
+    {
       path: "/create-resto",
       name: "create-resto",
       component: () => import("../views/CreateRestoView.vue")      
@@ -33,6 +38,11 @@ const router = createRouter({
       path: "/about",
       name: "about",
       component: () => import("../views/AboutView.vue")      
+    },
+    {
+      path: "/profile",
+      name: "profile",
+      component: () => import("../views/ProfileView.vue")      
     },
   ]
 })

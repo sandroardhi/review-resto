@@ -7,7 +7,6 @@ export const useHttp = () => {
   const client = axios.create({
     baseURL: import.meta.env.VUE_APP_API_URL || "http://localhost:8000",
     headers: {
-      "Content-Type": "application/json",
       "X-Requested-With": "XMLHttpRequest",
     },
   });
