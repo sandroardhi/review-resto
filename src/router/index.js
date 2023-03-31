@@ -10,6 +10,11 @@ const router = createRouter({
       component: LoginView
     },
     {
+      path: '/register',
+      name: 'register',
+      component: () => import("../views/RegisterView.vue")
+    },
+    {
       path: "/restos",
       name: "restos",
       component: () => import("../views/RestoView.vue")      
@@ -18,6 +23,26 @@ const router = createRouter({
       path: "/restos/:id",
       name: "restos-show",
       component: () => import("../views/RestoDetailView.vue")      
+    },
+    {
+      path: "/edit/:id",
+      name: "edit",
+      component: () => import("../views/EditView.vue")      
+    },
+    {
+      path: "/create-resto",
+      name: "create-resto",
+      component: () => import("../views/CreateRestoView.vue")      
+    },
+    {
+      path: "/about",
+      name: "about",
+      component: () => import("../views/AboutView.vue")      
+    },
+    {
+      path: "/profile",
+      name: "profile",
+      component: () => import("../views/ProfileView.vue")      
     },
   ]
 })
