@@ -65,6 +65,7 @@ const onSubmit = async () => {
 onMounted(() => {
   fetchReviews();
 });
+
 </script>
 
 <template>
