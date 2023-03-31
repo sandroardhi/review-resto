@@ -34,7 +34,7 @@
 <template>
   <Loading v-if="isLoading"/>
   <main class="grid grid-cols-12 gap-4 overflow-hidden" v-else>
-    <section class="col-span-6 bg-white h-screen shadow-lg">
+    <section class="col-span-6 bg-white min-h-screen shadow-lg">
         <form :action="route.path" method="post" class="w-[50%] mx-auto mt-20" @submit.prevent="onSubmit">
             <div class="mb-4">
               <label for="name" class="block mb-2">Name</label>

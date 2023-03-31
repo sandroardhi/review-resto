@@ -1,21 +1,16 @@
 <script setup>
-    import Loading from '../components/Loading.vue';
+import Loading from "../components/Loading.vue";
+import Navbar from "../components/Navbar.vue";
+import BaseContainer from "../components/BaseContainer.vue";
 
 
 </script>
 
 <template>
-  <div class="about">
-    <h1>This is an about page</h1>
-  </div>
+  <BaseContainer>
+    <Navbar/>
+    <div class="about">
+      <h1 class="text-center text-4xl font-semibold">Nothing Yet Hehehe</h1>
+    </div> 
+  </BaseContainer>
 </template>
-
-<style>
-@media (min-width: 1024px) {
-  .about {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-  }
-}
-</style>
