@@ -11,12 +11,7 @@ import axios from 'axios';
 const router = useRouter();
 const route = useRoute();
 const repository = useRestoRepository();
-const resto = reactive({
-    name: '',
-    address: '',
-    description: '',
-    image: ''
-});
+const resto = ref({});
 
 const onFileChange = (e) => {
     console.log(e.target.files[0])
@@ -24,15 +19,10 @@ const onFileChange = (e) => {
 };
 
 const isLoading =  ref(false)
-const onSubmit = () => {
+const onSubmit = (id) => {
     isLoading.value = true;
-    const formdata = new FormData();
-    formdata.append('image', resto.image);
-    formdata.append('name', resto.name);
-    formdata.append('description', resto.description);
-    formdata.append('address', resto.address);
     try {
-        repository.store(formdata);
+        repository.update(id, resto);
 
         router.replace({name: 'restos'})
     } catch (e) {
@@ -44,14 +34,12 @@ const onSubmit = () => {
 const id = route.params.id
 const fetchResto = async (id) => {
     const {data} = await repository.show(id)
-    resto.name = data.name
-    resto.address = data.address
-    resto.description = data.description
-    resto.image = data.image
+    resto.value = data
+    
 }
 onMounted(() => {
     console.log(id)
-    fetchResto()
+    fetchResto(id)
     console.log(resto)
 })
 </script>
@@ -60,8 +48,12 @@ onMounted(() => {
     <Loading v-if="isLoading"/>
     <BaseContainer v-else>
         <Navbar/>
+        <div class="ml-60 absolute">
+            <p class="text-6xl">Edit</p>
+            <hr class="h-[10px] w-[50px] my-4 bg-[#dde5b6] border-0 dark:bg-gray-700" />
+        </div>
         <div class="w-[75%] min-h-[80vh] bg-white mx-auto my-[3%] flex justify-center">
-            <form :action="route.path" class="flex flex-col w-[40%]" @submit.prevent="onSubmit">
+            <form :action="route.path" class="flex flex-col w-[40%]" @submit.prevent="onSubmit(id)">
                 <label for="name" class="mt-3 mb-3 font-semibold">Resto Name: </label>
                 <input 
                     type="text" 

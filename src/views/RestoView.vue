@@ -36,11 +36,6 @@
         }
         return textCopy
     }
-        
-
-
-    const laravelData = ref({});
-
 
     onMounted(() => {
         fetchRestos()
@@ -51,8 +46,10 @@
     <loading v-if="isLoading"/>
     <BaseContainer v-else class="mb-5">
         <Navbar/>
+        {{ resto_random }}
         <p class="text-4xl font-semibold mb-4">Today's Pick</p>
-        <img class="w-[90%] mx-auto bg-black h-[20rem] object-contain border-2 rounded-lg mb-3" src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cmVzdGF1cmFudHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60" alt="" >
+        <img class="w-[95%] mx-auto bg-black h-[20rem] object-contain border-2 rounded-lg mb-3" src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cmVzdGF1cmFudHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60" alt="" >
+        <hr class="h-[10px] w-[90%] mx-auto my-4 bg-[rgba(173,193,120,1)] border-0 dark:bg-gray-700" />
         <div class="grid grid-cols-12 gap-4">
             <div v-for="resto in restos" :key="resto.id" class="col-span-6">
                 <!-- Card -->
